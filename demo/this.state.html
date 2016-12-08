@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/babel">
+// this.state 
+// this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。
+var LikeButton = React.createClass({
+    getInitialState: function () {
+    	return {
+    		 liked: true
+    	};
+    },
+    handleClick: function(event) {
+         this.setState({
+         	 liked: !this.state.liked
+         });
+    },
+    render: function () {
+    	  var text = this.state.liked ? "like" : "havent\'t liked";
+    	  return (
+               <p onClick = {this.handleClick}>
+                     you {text} this. Click to toggle.
+               </p>
+    	  );
+    }
+});
+ReactDOM.render(
+    <LikeButton />,
+    document.body
+);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/babel">
+ //componentDidMount   did函数在进入状态之后调用
+ //componentDidMount方法设置 一个定时器 100ms 重新设置组件的透明度，从而引发重新渲染
+ //this.props 一旦定义就不在改变的特性   this.state 随着永华互动而变化的特性
+ var  Opacity = React.createClass({
+ 	  getInitialState: function () {
+ 	  	 return {
+ 	  	 	  opacity: 1
+ 	  	 };
+ 	  },
+ 	  componentDidMount: function () {
+ 	  	 this.timer = setInterval(function(){
+                var opacity = this.state.opacity;
+                opacity -= .05;
+                if (opacity < 0.1) {
+                    opacity = 1.0;
+                }
+                this.setState({
+                	 opacity: opacity
+                });
+ 	  	  }.bind(this), 100);
+ 	  },
+ 	  render: function() {
+ 	  	 return (
+             <div style = {{opacity: this.state.opacity}}>
+                   hello {this.props.name}
+             </div>
+ 	  	 );
+ 	  }
+ });
+ ReactDOM.render(
+    <Opacity name = "world"/>,
+    document.body
+ );
+</script>
+</body>
+</html>

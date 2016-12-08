@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/babel">
+//组件
+//组件类的第一个字母必须大写,否则会报错。
+ var HelloMessage = React.createClass({
+     render : function() {
+        return <h1>hello,{this.props.name}</h1>;
+     }
+ });
+ ReactDOM.render(
+      <HelloMessage name="join" />,//组件类只能包含一个顶层标签 否则也会报错
+      document.getElementById("div1")
+ );
+</script>
+</body>
+</html>
